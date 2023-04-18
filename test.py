@@ -1,4 +1,4 @@
-from logika import ssussyy, playable, move_forward
+from logika import ssussyy, playable, move_forward, move_backward, slozhnoe_nazvaniye
 import unittest
 
 
@@ -37,3 +37,44 @@ class G2048(unittest.TestCase):
               [0, 0, 0, 2],
               [0, -0, 0, 0]]
         self.assertEqual(move_forward(a), av)
+
+    def test05(self):
+        a = [[2, 4, 0, 4],
+             [8, 32, 0, 32],
+             [2, 0, 0, 0],
+             [0, 0, 0, 0]]
+
+        ab = [[2, 8, 0, 0],
+              [8, 64, 0, 0],
+              [2, 0, 0, 0],
+              [0, 0, 0, 0]]
+        self.assertEqual(move_backward(a), ab)
+
+    def test_6(self):
+        mas = [[2, 2, 0, 0],
+               [0, 4, 4, 0],
+               [0, 0, 0, 0],
+               [0, 0, 0, 0]]
+        rezak = [[4, 0, 0, 0],
+               [8, 0, 0, 0],
+               [0, 0, 0, 0],
+               [0, 0, 0, 0]]
+        self.assertEqual(move_backward(mas), rezak)
+
+    def test_7(self):
+        mas = [[2, 4, 4, 2],
+               [4, 0, 0, 2],
+               [0, 32, 0, 0],
+               [8, 8, 4, 4]]
+        rez = [[2, 8, 2, 0],
+               [4, 2, 0, 0],
+               [32, 0, 0, 0],
+               [16, 8, 0, 0]]
+        self.assertEqual(move_backward(mas), rez)
+
+    def test_8(self):
+        df = [[0, 2, 0, 0], [4, 8, 8, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+        gh = [[0, 4, 0, 0], [2, 8, 0, 0], [0, 8, 0, 0], [0, 0, 0, 0]]
+        self.assertEqual(slozhnoe_nazvaniye(df), gh)
+
+
