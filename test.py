@@ -1,4 +1,4 @@
-from logika import ssussyy, playable, move_forward, move_backward, slozhnoe_nazvaniye
+from logika import *
 import unittest
 
 
@@ -27,41 +27,18 @@ class G2048(unittest.TestCase):
         b = True
         self.assertEqual(playable(a), b)
 
-    def test14(self):
-        a = [[2, 4, 0, 4],
-             [8, 32, 0, 16],
-             [1, 1, 0, 0],
-             [0, -0, 0, 0]]
-        av = [[0, 0, 2, 8],
-              [0, 8, 32, 16],
-              [0, 0, 0, 2],
-              [0, -0, 0, 0]]
-        self.assertEqual(move_forward(a), av)
-
-    def test05(self):
-        a = [[2, 4, 0, 4],
-             [8, 32, 0, 32],
-             [2, 0, 0, 0],
-             [0, 0, 0, 0]]
-
-        ab = [[2, 8, 0, 0],
-              [8, 64, 0, 0],
-              [2, 0, 0, 0],
-              [0, 0, 0, 0]]
-        self.assertEqual(move_backward(a), ab)
-
-    def test_6(self):
+    def test_11(self):
         mas = [[2, 2, 0, 0],
                [0, 4, 4, 0],
                [0, 0, 0, 0],
                [0, 0, 0, 0]]
-        rezak = [[4, 0, 0, 0],
+        rez = [[4, 0, 0, 0],
                [8, 0, 0, 0],
                [0, 0, 0, 0],
                [0, 0, 0, 0]]
-        self.assertEqual(move_backward(mas), rezak)
+        self.assertEqual(move_left(mas), (rez, 12))
 
-    def test_7(self):
+    def test_12(self):
         mas = [[2, 4, 4, 2],
                [4, 0, 0, 2],
                [0, 32, 0, 0],
@@ -70,11 +47,26 @@ class G2048(unittest.TestCase):
                [4, 2, 0, 0],
                [32, 0, 0, 0],
                [16, 8, 0, 0]]
-        self.assertEqual(move_backward(mas), rez)
+        self.assertEqual(move_left(mas), (rez, 32))
 
-    def test_8(self):
-        df = [[0, 2, 0, 0], [4, 8, 8, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
-        gh = [[0, 4, 0, 0], [2, 8, 0, 0], [0, 8, 0, 0], [0, 0, 0, 0]]
-        self.assertEqual(slozhnoe_nazvaniye(df), gh)
+    def test_13(self):
+        mas = [[2, 4, 4, 2],
+               [4, 0, 0, 2],
+               [0, 4, 0, 0],
+               [8, 4, 4, 0]]
+        rez = [[2, 8, 8, 4],
+               [4, 4, 0, 0],
+               [8, 0, 0, 0],
+               [0, 0, 0, 0]]
+        self.assertEqual(move_up(mas), (rez, 20))
 
-
+    def test_14(self):
+        mas = [[2, 4, 4, 2],
+               [4, 4, 0, 2],
+               [4, 4, 2, 2],
+               [8, 4, 4, 0]]
+        rez = [[2, 8, 4, 4],
+               [8, 8, 2, 2],
+               [8, 0, 4, 0],
+               [0, 0, 0, 0]]
+        self.assertEqual(move_up(mas), (rez, 28))
