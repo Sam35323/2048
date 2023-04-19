@@ -1,5 +1,13 @@
 import random
 
+gg = random.randint(0, 3)
+dfh = random.randint(0, 3)
+
+mass = [[0, 0, 0, 0],
+        [0, 7, 3, 0],
+        [4, 0, 0, 0],
+        [0, -0, 0, 5]]
+
 
 def mass_kill(ar):
     print('_______')
@@ -46,8 +54,18 @@ def move_backward(gh):
                 gh[row].append(0)
     return gh
 
-def move_forw1rd():
-    pass
+def move_forw1rd(gh):
+    f = slozhnoe_nazvaniye(gh)
+    f = move_backward(gh)
+    f = slozhnoe_nazvaniye(gh)
+    return f
+
+
+def move_backw1rd(gh):
+    f = slozhnoe_nazvaniye(gh)
+    f = move_forward(gh)
+    f = slozhnoe_nazvaniye(gh)
+    return f
 
 def slozhnoe_nazvaniye(gh):
     gk = []
@@ -74,3 +92,5 @@ def playable(af):
                 return True
     return False
 
+f = move_backw1rd(mass)
+print(f)
