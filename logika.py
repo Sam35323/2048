@@ -1,13 +1,5 @@
 import random
 
-gg = random.randint(0, 3)
-dfh = random.randint(0, 3)
-
-mass = [[0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, -0, 0, 0]]
-
 
 def mass_kill(ar):
     print('_______')
