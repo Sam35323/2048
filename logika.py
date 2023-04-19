@@ -25,61 +25,55 @@ def ssussyy(_y5):
     return sus
 
 
-def move_left(mas):
-    delta = 0
-    for row in mas:
+def move_forward(gh):
+    for row in gh:
         while 0 in row:
             row.remove(0)
-        while len(row) != 4:
-            row.append(0)
-    for i in range(4):
-        for j in range(3):
-            if mas[i][j] == mas[i][j + 1] and mas[i][j] != 0:
-                mas[i][j] *= 2
-                delta += mas[i][j]
-                mas[i].pop(j + 1)
-                mas[i].append(0)
-    return mas, delta
-
-
-def move_right(mas):
-    delta = 0
-    for row in mas:
-        while 0 in row:
-            row.remove(0)
-        while len(row) != 4:
+        while len(row) < 4:
             row.insert(0, 0)
-    for i in range(4):
-        for j in range(3, 0, -1):
-            if mas[i][j] == mas[i][j - 1] and mas[i][j] != 0:
-                mas[i][j] *= 2
-                delta += mas[i][j]
-                mas[i].pop(j - 1)
-                mas[i].insert(0, 0)
-    return mas, delta
+    for row in range(4):
+        for col in range(3, 0, -1):
+            if gh[row][col] == gh[row][col - 1] and gh[row][col] != 0:
+                gh[row][col] *= 2
+                gh[row].pop(col - 1)
+                gh[row].insert(0, 0)
+    return gh
 
 
-def transpose(mas):
-    new_mas = []
+def move_backward(gh):
+    for row in gh:
+        while 0 in row:
+            row.remove(0)
+        while len(row) < 4:
+            row.append(0)
+    for row in range(4):
+        for col in range(3):
+            if gh[row][col] == gh[row][col + 1] and gh[row][col] != 0:
+                gh[row][col] *= 2
+                gh[row].pop(col + 1)
+                gh[row].append(0)
+    return gh
+
+def move_forw1rd(gh):
+    f = slozhnoe_nazvaniye(gh)
+    f = move_backward(gh)
+    f = slozhnoe_nazvaniye(gh)
+    return f
+
+
+def move_backw1rd(gh):
+    f = slozhnoe_nazvaniye(gh)
+    f = move_forward(gh)
+    f = slozhnoe_nazvaniye(gh)
+    return f
+
+def slozhnoe_nazvaniye(gh):
+    gk = []
     for i in range(4):
-        new_mas.append([])
+        gk.append([])
         for j in range(4):
-            new_mas[i].append(mas[j][i])
-    return new_mas
-
-
-def move_up(mas):
-    mas = transpose(mas)
-    mas, delta = move_left(mas)
-    mas = transpose(mas)
-    return mas, delta
-
-
-def move_down(mas):
-    mas = transpose(mas)
-    mas, delta = move_right(mas)
-    mas = transpose(mas)
-    return mas, delta
+            gk[i].append(gh[j][i])
+    return gk
 
 
 def fed(argument, o1, o2):
@@ -97,3 +91,6 @@ def playable(af):
             if j == 0:
                 return True
     return False
+
+f = move_backw1rd(mass)
+print(f)
